@@ -1,4 +1,4 @@
-This repo is a tutorial repo for my article: **[Typesafe your node project end-to-end with Typescript, express and prisma ORM](http://www.dev.to)**
+This repo is a tutorial repo for my article: **[Typesafe your node project end-to-end with Typescript, express and prisma ORM](https://dev.to/crispywrecker/type-safe-your-entire-node-project-with-typescript-express-and-prisma-orm-1fkf)**
 
 Steps to run the server:
 
@@ -13,4 +13,4 @@ Steps to run the server:
 > npm start
 ```
 
-View article to know more about the [tutorial](http://www.dev.to)
+View article to know more about the [tutorial](https://dev.to/crispywrecker/type-safe-your-entire-node-project-with-typescript-express-and-prisma-orm-1fkf)
