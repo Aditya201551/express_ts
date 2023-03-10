@@ -1,5 +1,3 @@
-# readme.md
-
 This repo is a tutorial repo for my article: **[Typesafe your node project end-to-end with Typescript, express and prisma ORM](http://www.dev.to)**
 
 Steps to run the server:
