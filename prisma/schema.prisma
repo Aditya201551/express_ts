@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model dog {
+  dog_id            String              @id @db.Char(36)
+  name              String              @db.VarChar(100)
+  breed             String              @db.VarChar(100)
+  birthday          DateTime?           @db.DateTime(0)
+  created_at        DateTime            @default(now()) @db.Timestamp(0)
+  updated_at        DateTime?           @default(now()) @db.Timestamp(0)
+  owner_id          String              @db.Char(36)
+  owner             owner               @relation(fields: [owner_id], references: [owner_id], onDelete: NoAction, onUpdate: NoAction, map: "dog_FK")
+  owner_dog_mapping owner_dog_mapping[]
+
+  @@index([owner_id], map: "dog_FK")
+}
+
+model owner {
+  owner_id          String              @id @unique(map: "owner_owner_id_IDX") @db.Char(36)
+  name              String              @db.VarChar(100)
+  email             String              @unique(map: "owner_un") @db.VarChar(100)
+  phone             String?             @db.VarChar(100)
+  create_at         DateTime?           @default(now()) @db.Timestamp(0)
+  updated_at        DateTime?           @default(now()) @db.Timestamp(0)
+  dog               dog[]
+  owner_dog_mapping owner_dog_mapping[]
+}
+
+model owner_dog_mapping {
+  mapping_id String   @id @db.Char(36)
+  owner_id   String   @db.Char(36)
+  dog_id     String   @db.Char(36)
+  created_at DateTime @default(now()) @db.Timestamp(0)
+  updated_at DateTime @default(now()) @db.Timestamp(0)
+  owner      owner    @relation(fields: [owner_id], references: [owner_id], onDelete: NoAction, onUpdate: NoAction, map: "owner_dog_mapping_FK")
+  dog        dog      @relation(fields: [dog_id], references: [dog_id], onDelete: NoAction, onUpdate: NoAction, map: "owner_dog_mapping_FK_1")
+
+  @@unique([owner_id, dog_id], map: "owner_dog_mapping_un")
+  @@index([dog_id], map: "owner_dog_mapping_FK_1")
+}
